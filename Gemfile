@@ -6,7 +6,7 @@ gem 'activeresource'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'protected_attributes'
+# gem 'protected_attributes'
 gem 'pg'
 gem 'sass-rails'
 gem 'bootstrap-sass'
