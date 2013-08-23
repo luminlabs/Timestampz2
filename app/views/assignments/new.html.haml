@@ -1,10 +1,10 @@
 %h2 Create Assignments
 .add-assignment-form
-  = link_to assignments_add_form_path, remote: true, class: "add_form" do
-    %i.icon-plus-sign
-    %span
-      Add New Assignment
-%br
+/   = link_to assignments_add_form_path, remote: true, class: "add_form" do
+/     %i.icon-plus-sign
+/     %span
+/       Add New Assignment
+/ %br
 
 = form_tag(assignments_path)
 - if !@errors.blank?

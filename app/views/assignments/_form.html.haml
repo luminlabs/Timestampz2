@@ -2,9 +2,9 @@
   %h4 Assignment
 
   = label_tag :name, 'Assignment Name'
-  = text_field_tag "assignment[#{count}][name]"
+  = text_field_tag "assignment[name]"
   = label_tag :class
-  = select_tag "assignment[#{count}][day_class_id]", options_from_collection_for_select(@day_classes, 'id', 'name')
+  = select_tag "assignment[day_class_id]", options_from_collection_for_select(@day_classes, 'id', 'name')
   = label_tag :due_date
-  = text_field_tag "assignment[#{count}][due_date]", nil, class: 'showcal'
+  = text_field_tag "assignment[due_date]", nil, class: 'showcal'
   %br

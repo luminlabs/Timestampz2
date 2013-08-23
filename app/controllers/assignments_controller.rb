@@ -11,8 +11,8 @@ class AssignmentsController < ApplicationController
   end
 
   def create
-    @assignment = Assignment.new(assignment_params['0'])
-    @assignment.day_class_id = assignment_params['0'][:day_class_id]
+    @assignment = Assignment.new(assignment_params)
+    # @assignment.day_class_id = assignment_params[:day_class_id]
     if @assignment.save
       flash[:success] = "Assignment successfully created!"
       redirect_to assignments_path
@@ -53,6 +53,6 @@ class AssignmentsController < ApplicationController
   private 
    # attr_accessible :due_date, :name
   def assignment_params
-    params.require(:assignment).permit(:due_date, :name)
+    params.require(:assignment).permit(:due_date, :name, :day_class_id)
   end
 end
