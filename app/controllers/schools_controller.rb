@@ -48,4 +48,10 @@ class SchoolsController < ApplicationController
   def setup
     @school = School.find(params[:id])
   end
+
+  def school_params
+    params.require(:school).permit(:name)
+  end
+    # attr_accessible :name
+
 end

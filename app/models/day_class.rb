@@ -12,7 +12,7 @@
 #
 
 class DayClass < ActiveRecord::Base
-  attr_accessible :period, :subject, :name, :school_id, :teacher_id
+  # attr_accessible :period, :subject, :name, :school_id, :teacher_id
 
   has_many :student_day_classes
   has_many :students, through: :student_day_class

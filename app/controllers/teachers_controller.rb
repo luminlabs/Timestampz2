@@ -23,6 +23,7 @@ class TeachersController < ApplicationController
     end  
   end
 
+
   # def index
   #   @teachers = Teacher.all
   # end
@@ -50,4 +51,11 @@ class TeachersController < ApplicationController
     @teacher.destroy
     redirect_to schools_path
   end
+
+  private
+# :first_name, :last_name, :school_id
+  def teacher_params
+    params.require(:teacher).permit(:first_name,:last_name,:school_id)
+  end
+
 end

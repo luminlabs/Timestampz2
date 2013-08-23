@@ -40,4 +40,11 @@ class GroupsController < ApplicationController
     @group.destroy
     redirect_to root_path
   end
+
+  private 
+  
+  def group_params
+    params.require(:group).permit(:name, :teacher_first_name ,:teacher_last_name, :grade_level)
+  end
+  # attr_accessible :name, :teacher_first_name ,:teacher_last_name, :grade_level
 end

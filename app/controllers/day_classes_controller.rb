@@ -38,4 +38,11 @@ class DayClassesController < ApplicationController
     @day_class.destroy
     redirect_to schools_path
   end
+
+  private 
+   # attr_accessible :period, :subject, :name, :school_id, :teacher_id
+  def day_class_params
+    params.require(:day_class).permit(:period, :subject, :name, :school_id, :teacher_id)
+  end
+
 end

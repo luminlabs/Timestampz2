@@ -13,7 +13,7 @@
 #
 
 class Student < ActiveRecord::Base
-  attr_accessible :grade_level, :homeroom_teacher, :first_name, :last_name
+  # attr_accessible :grade_level, :homeroom_teacher, :first_name, :last_name
 
   has_many :student_groups
   has_many :groups, through: :student_groups

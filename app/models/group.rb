@@ -12,7 +12,7 @@
 #
 
 class Group < ActiveRecord::Base
-  attr_accessible :name, :teacher_first_name ,:teacher_last_name, :grade_level
+  # attr_accessible :name, :teacher_first_name ,:teacher_last_name, :grade_level
 
   has_many :student_groups
   has_many :students, through: :student_groups

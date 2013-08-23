@@ -49,4 +49,10 @@ class AssignmentsController < ApplicationController
       format.js
     end
   end
+
+  private 
+   # attr_accessible :due_date, :name
+  def assignment_params
+    params.require(:assignment).permit(:due_date, :name)
+  end
 end
