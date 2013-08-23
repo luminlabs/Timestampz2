@@ -11,8 +11,8 @@ class AssignmentsController < ApplicationController
   end
 
   def create
-    @assignment = Assignment.new(params[:assignment]['0'])
-    @assignment.day_class_id = params[:assignment]['0'][:day_class_id]
+    @assignment = Assignment.new(assignment_params['0'])
+    @assignment.day_class_id = assignment_params['0'][:day_class_id]
     if @assignment.save
       flash[:success] = "Assignment successfully created!"
       redirect_to assignments_path
@@ -28,7 +28,7 @@ class AssignmentsController < ApplicationController
 
   def update
     @assignment = Assignment.find(params[:id])
-    if @assignment.update_attributes(params[:assignment])
+    if @assignment.update_attributes(assignment_params)
       flash[:success] = "Assignment successfully updated."
       redirect_to assignments_path
     else

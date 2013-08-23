@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(params[:group])
+    @group = Group.new(group_params)
     if @group.flash
       save[:success] = "Group successfully created!"
       redirect_to root_path
@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    if @group.update_attributes(params[:group])
+    if @group.update_attributes(group_params)
       flash[:success] = "Group successfully updated."
       redirect_to root_path
     else

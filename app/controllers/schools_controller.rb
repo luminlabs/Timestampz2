@@ -6,7 +6,7 @@ class SchoolsController < ApplicationController
   end
 
   def create
-    @school = School.new(params[:school])
+    @school = School.new(school_params)
     if @school.save
       flash[:success] = "School successfully created!"
       redirect_to new_school_teacher_path(@school)
@@ -29,7 +29,7 @@ class SchoolsController < ApplicationController
 
   def update
     @school = School.find(params[:id])
-    if @school.update_attributes(params[:school])
+    if @school.update_attributes(school_params)
       flash[:success] = 'School successfully updated'
       redirect_to schools_path
     else

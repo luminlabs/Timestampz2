@@ -25,7 +25,7 @@ class DayClassesController < ApplicationController
 
   def update
     @day_class = DayClass.find(params[:id])
-    if @day_class.update_attributes(params[:day_class])
+    if @day_class.update_attributes(day_class_params)
       flash[:success] = 'Classes successfully updated'
       redirect_to schools_path
     else
