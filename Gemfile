@@ -20,7 +20,7 @@ gem 'pry'
 gem 'pry-rails'
 gem 'sass-rails'
 gem 'coffee-rails'
-gem 'devise'
+gem 'devise', '~> 3.0.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
