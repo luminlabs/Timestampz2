@@ -1,0 +1,9 @@
+%h1 Edit Class
+= form_for @day_class, method: 'put' do |f|
+  %h5
+    = @day_class.name
+  = f.select :subject, options_for_select([['ELA', 'ELA'], ['Math', 'Math'], ['Science', 'Science'],  ['Social Studies', 'Social Studies']], "#{@day_class.subject}"), prompt: "Select Subject"
+  %br
+  = f.select :period, options_for_select([['1st', '1st'], ['2nd', '2nd'], ['3rd', '3rd']], "#{@day_class.period}"), prompt: "Select Period"
+  %br
+  = f.submit "Save Changes", class: "btn btn-small btn-success", id: "submit_btn"

@@ -2,22 +2,30 @@ class AssignmentsController < ApplicationController
 
   def index
     @assignments = Assignment.all
+    @day_classes = DayClass.all.by_name
   end
 
   def new
     @assignment = Assignment.new
-    @day_classes = DayClass.all
+    @day_classes = DayClass.all.by_name
+    gon.day_classes = @day_classes
     @count = 0
   end
 
   def create
-    @assignment = Assignment.new(params[:assignment]['0'])
-    @assignment.day_class_id = params[:assignment]['0'][:day_class_id]
-    if @assignment.save
-      flash[:success] = "Assignment successfully created!"
+    @errors = []
+    params[:assignment].each_value do |attrs|
+      @assignment = Assignment.new(attrs)
+      @errors += @assignment.errors.full_messages unless @assignment.save 
+    end
+    if @errors.empty?
+      flash[:success] = "Class successfully created!"
       redirect_to assignments_path
     else
-      redirect_to new_assignment_path
+      @errors.uniq!
+      flash[:errors] = "Some assignment fields had errors. Please check to
+                    see if any assignments were not added."
+      redirect_to assignments_path
     end
   end
 

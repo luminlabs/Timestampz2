@@ -1,10 +1,7 @@
-.assignment-form
-  %h4 Assignment
-
-  = label_tag :name, 'Assignment Name'
-  = text_field_tag "assignment[#{count}][name]"
-  = label_tag :class
-  = select_tag "assignment[#{count}][day_class_id]", options_from_collection_for_select(@day_classes, 'id', 'name')
-  = label_tag :due_date
-  = text_field_tag "assignment[#{count}][due_date]", nil, class: 'showcal'
-  %br
+%h4 Assignment
+= text_field_tag "assignment[#{count}][name]", nil, placeholder: "Enter Assignment Name"
+%br
+= select_tag "assignment[#{count}][day_class_id]", options_from_collection_for_select(@day_classes, 'id', 'name'), prompt: "Select Class"
+%br
+= text_field_tag "assignment[#{count}][due_date]", nil, class: 'showcal', placeholder: "Enter Date"
+%br

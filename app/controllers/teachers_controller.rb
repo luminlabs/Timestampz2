@@ -2,7 +2,7 @@ class TeachersController < ApplicationController
 
   def new
     @teacher = Teacher.new
-    @school = School.find(params[:school_id])
+    @school_id = params[:school]
   end
 
   def create
@@ -17,19 +17,11 @@ class TeachersController < ApplicationController
       redirect_to new_school_day_class_path
     else
       @errors.uniq!
-      flash[:errors] = "Some teachers fields had errors. Please check the School tab
+      flash[:errors] = "Some teacher fields had errors. Please check the School tab
                     to see if any teachers were not added."
       redirect_to new_school_day_class_path
     end  
   end
-
-  # def index
-  #   @teachers = Teacher.all
-  # end
-
-  # def show
-  #   @teacher = Teacher.find(params[:id])
-  # end
 
   def edit
     @teacher = Teacher.find(params[:id])
@@ -37,7 +29,7 @@ class TeachersController < ApplicationController
 
   def update
     @teacher = Teacher.find(params[:id])
-    if @teacher.update_attributes(params[:teacher])
+    if @teacher.update_attributes(params[:teacher]['0'])
       flash[:success] = 'Teacher successfully updated'
       redirect_to schools_path
     else

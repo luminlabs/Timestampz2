@@ -27,34 +27,33 @@ describe AssignmentsController do
 
     before :each do
       ApplicationController.any_instance.stub(:current_user).and_return()
-      @assignment_hash = {
-        name: "Assignment 1",
-        due_date: Time.now,
-        day_class_id: day_class.id
-      }
+      @params = { assignment: { '0' => { name: "Assignment 1", due_date: Time.now, day_class_id: day_class.id }}}
     end
 
-    context 'it saves to the database' do
-
-      it 'creates a multiple assignments' do
-        expect{
-          post :create, assignment: @assignment_hash 
-        }.to change{Assignment.count}.by(1)
+    context 'with correct params' do
+      it 'redirects' do
+        post(:create, @params)
+        response.should redirect_to(assignments_path)
       end
 
-      it 'redirects to index' do
-        post :create, assignment: @assignment_hash
-        expect(response).to redirect_to(assignments_path) 
+      it 'saves to the database' do
+        expect{ post :create, @params }.to change{Assignment.count}.by(1)
+      end
+
+      it 'has sucessful flash notice' do
+        post('create', @params)
+        flash[:success].should_not be_blank
       end
     end
 
-    context 'it does not save' do
-      it 'renders new' do
-        post :create, assignment: {due_date: Time.now}
-        expect(response).to redirect_to(new_assignment_path)
+    context 'incorrect params' do
+      it 'flashes error' do
+        Assignment.any_instance.stub(:save).and_return(nil)
+        Assignment.any_instance.stub_chain(:errors, :full_messages).and_return(["Error"])
+        post('create', @params)
+        flash[:errors].should_not be_blank
       end
     end
-
   end
 
   describe '#update' do

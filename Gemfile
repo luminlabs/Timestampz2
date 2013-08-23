@@ -21,6 +21,7 @@ gem 'pry-rails'
 gem 'sass-rails'
 gem 'coffee-rails'
 gem 'devise'
+gem 'gon'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
@@ -56,4 +57,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'launchy'
   gem 'simplecov', :require => false
+end
+
+group :production do
+  gem 'rails_12factor'
 end

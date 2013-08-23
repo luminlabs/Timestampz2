@@ -47,35 +47,6 @@ describe TeachersController do
     end
   end
 
-  # describe '#index' do
-  #   it 'returns success' do
-  #     get('index')
-  #     response.should be_successful
-  #   end
-
-  #   it "assigns @teachers" do
-  #     mock_teachers = double("teacher")
-  #     Teacher.stub(:all).and_return(mock_teachers)
-  #     get('index')
-  #     assigns(:teachers).should == mock_teachers
-  #   end
-  # end
-
-  # describe "#show" do
-  #   before(:each) do
-  #     Teacher.stub(:find).and_return(teacher)
-  #     get('show', id:teacher.object_id)
-  #   end
-
-  #   it "returns success" do
-  #     response.should be_successful
-  #   end
-
-  #   it "assigns @teacher" do
-  #     assigns(:teacher).should == teacher
-  #   end
-  # end
-
   describe "#edit" do
     before(:each) do
       Teacher.stub(:find).and_return(teacher)

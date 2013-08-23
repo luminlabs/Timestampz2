@@ -1,29 +1,20 @@
 %h2 Create Assignments
-.add-assignment-form
+#add-assignment-form
   = link_to assignments_add_form_path, remote: true, class: "add_form" do
     %i.icon-plus-sign
     %span
       Add New Assignment
 %br
+#assignment-forms
+  = form_tag(assignments_path)
+  - if !@errors.blank?
+    #error_explanation
+      .alert.alert-error
+        ="There were #{ pluralize(@errors.count, "error") } in the last form "
+      %ul
+        -@errors.each do |msg|
+          %li= msg
 
-= form_tag(assignments_path)
-- if !@errors.blank?
-  #error_explanation
-    .alert.alert-error
-      ="There were #{ pluralize(@errors.count, "error") } in the last form "
-    %ul
-      -@errors.each do |msg|
-        %li= msg
+  = render partial: 'form', locals: { count: @count}
 
-= render partial: 'form', locals: { count: @count}
-
-= submit_tag "Create Assignment", class: "btn btn-large btn-success"
-
-#day_classes{ data: { classes: @day_classes.to_json }}
-
-:javascript
-  $(document).ready(function() {
-    var count = '1';
-    $.ajax('add_form.html')
-    $('.assignment-form').after("<%= escape_javascript (render 'assignments/add_form') %>");
-  });
+  = submit_tag "Create Assignment", class: "btn btn-large btn-success", id: "submit-button"
